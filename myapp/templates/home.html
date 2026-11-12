@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<style>
+    .img1{
+        width:50%;
+    }
+</style>
+<body>
+   
+    <h1>Welcome page</h1>
+    <a href="{% url 'about' %}">Go to about page</a>
+    <a href="{% url 'contact' %}">Go to contact page</a>
+    <a href="{% url 'product' %}">Go to product page</a>
+    <a href="{% url 'register' %}">Go to register page</a>
+    <a href="{% url 'dashboard' %}">Go to dashboard page</a><br><br>
+    <img src="{% static 'images/img1.jpg' %}" alt="butterfly image" class="img1">
+    <a href="{% url 'validate' %}">Go to validation page</a>
+
+</body>
+</html>
+
+{% endblock %}

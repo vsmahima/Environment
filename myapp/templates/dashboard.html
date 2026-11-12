@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,tr,th,td{border:solid black 2px; border-color: black; background-color: rgb(205, 238, 227);}
+</style>
+<body>
+    <h1>Welcome dashboard</h1>
+   <!--  {{ data }}-->
+
+        <table>
+            <tr>
+                <th>profile</th>
+                <th>full_name</th>
+                <th>email</th>
+                <th>user_name</th>
+                <th>gender</th>
+                <th>dob</th>
+                <th>address</th>
+                <th>phone_number</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>       
+        {% if mydata %}
+        {% for i in mydata %}
+        <tr>
+        <td> <img style="width: 100px; height:100px;" src="{{ i.profile.url }}" alt="img"> </td>
+        <td>{{ i.full_name}}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.user_name }}</td>
+        <td>{{ i.gender }}</td>
+        <td>{{ i.address }}</td>
+        <td>{{ i.dob }}</td>
+        <td>{{ i.phone_number }}</td>
+        <td><a href="{% url 'update' i.id %}">Update</a></td>
+        <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table><br><br><br>
+
+    <table>
+        <tr>
+            <th>Full Name</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% if form %}
+            {% for i in form %}
+            <tr>
+                <td>{{ i.fullname }}</td>
+                <td>{{ i.username }}</td>
+                <td>{{ i.email }}</td>
+                <td><a href="{% url 'update_list' i.id %}">Update</a></td>
+                <td><a href="">Delete</a></td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+
+    </table>
+
+  
+
+</body>
+</html>

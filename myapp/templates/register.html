@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Regristration Form</h1>
+       
+        <table>
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <tr>
+                <td><label for="profile_image">Upload Image</label></td>
+                <td><input type="file" name="profile" id="profile_image">
+            </tr>
+            <tr>
+                <td><label for="full_name">Full Name</label></td>
+                <td><input type="text" name="full_name" id="full_name" placeholder="Enter your fullname">
+            </tr>
+            <tr>
+                <td><label for="email">Email id</label></td>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="user_name">User Name</label></td>
+                <td><input type="text" name="user_name"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" name="password"></td>
+            </tr>
+             <tr>
+                <td><label for="password">Confirm Password</label></td>
+                <td><input type="password" name="confirm_password"></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender</label></td>
+                <td><input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female</td>
+            </tr>
+            <tr>
+                <td><label for="dob">DOB</label></td>
+                <td><input type="date" name="dob"></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address</label></td>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="phone_number">Phone Number</label></td>
+                <td><input type="number" name="phone_number"></td>
+            </tr>
+            <tr aria-colspan="2">
+                <td><button type="submit">Register</button></td>
+            </tr>
+
+         </form>
+        </table>
+       
+    </div>
+</body>
+</html>
