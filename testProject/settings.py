@@ -124,10 +124,24 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
 # Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'vsmahima@gmail.com'
+EMAIL_HOST_PASSWORD = 'ylzr obww kpyg hcol'
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+# MAILERS = {
+#     'default': {
+#         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
+#         'HOST' = 'smtp.gmail.com',
+#         'PORT' = 587,
+#         'HOST_USER' = 'vsmahima@gmail.com',
+#         'HOST_PASSWORD' = 'ylzr obww kpyg hcol'
+#         'USE_TLS'= True
+#     }
+# }

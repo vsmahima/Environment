@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Registration,ProductModel,Validation
 from .forms import ProductAddingForms, ValidationForms,updatelist_validform
 
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+
+
 # Create your views here.
 def home(request):
     return render(request,"home.html")
@@ -92,6 +97,18 @@ def validate(request):
             if form.is_valid():
                 form.save()
                 print("saved")
+                subject = "Registration confirmation"
+                message = f"""Hello {form.username},
+                    Your registration has been succefully completed
+                
+                    Thank You.
+                
+                """
+                send_mail(subject,message,
+                          settings.DEFAULT_FROM_EMAIL,
+                          form.email,
+                          fail_silently=False)
+                messages.success(request,"Registration succesfull")
     else:
         form=ValidationForms()
     return render(request,

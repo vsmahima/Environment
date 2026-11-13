@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Validating form example</h1>
+    {%   if messages %}
+        {{ messages }}
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <table>
