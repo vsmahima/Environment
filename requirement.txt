@@ -1,0 +1,5 @@
+installed apps
+
+django
+mysqlclient
+pillow

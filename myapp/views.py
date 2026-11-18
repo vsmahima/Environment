@@ -93,12 +93,15 @@ def product(request):
 
 def validate(request):
     if request.method == "POST":
-            form=ValidationForms(request.POST)
+            form=ValidationForms(request.POST,request.FILES)
+            
             if form.is_valid():
-                form.save()
+                user=form.save()
+                fullname=form.cleaned_data["fullname"]
+                email=form.cleaned_data["email"]
                 print("saved")
                 subject = "Registration confirmation"
-                message = f"""Hello {form.username},
+                message = f"""Hello {form.fullname},
                     Your registration has been succefully completed
                 
                     Thank You.
@@ -106,7 +109,7 @@ def validate(request):
                 """
                 send_mail(subject,message,
                           settings.DEFAULT_FROM_EMAIL,
-                          form.email,
+                          [email],
                           fail_silently=False)
                 messages.success(request,"Registration succesfull")
     else:
