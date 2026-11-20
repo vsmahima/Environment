@@ -12,6 +12,7 @@ urlpatterns = [
     path("login/",views.login,name="login"),
     path("product/",views.product,name="product"),
     path("validate/",views.validate,name="validate"),
-    path("update_list/<int:pk>/",views.update_list,name="update_list")  
-
+    path("update_list/<int:pk>/",views.update_list,name="update_list"), 
+    path("profile",views.profile,name="profile"),
+    path("logout/",views.login,name="logout"),
 ]

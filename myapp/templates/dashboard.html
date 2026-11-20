@@ -10,11 +10,19 @@
 </style>
 <body>
     <h1>Welcome dashboard</h1>
+
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'profile' %}">Profile Page</a>
    <!--  {{ data }}-->
+      <h1>{{ request.session.username }}</h1>
+      <h1>{{ request.session.fullname }}</h1>
+      <h1>{{ request.session.user_id }}</h1>
+
+      <h3 style="color: blueviolet;"> {{ request.COOKIES.username }}</h3>
 
         <table>
             <tr>
-                <th>profile</th>
+                <!--<th>profile</th>-->
                 <th>full_name</th>
                 <th>email</th>
                 <th>user_name</th>
@@ -28,7 +36,7 @@
         {% if mydata %}
         {% for i in mydata %}
         <tr>
-        <td> <img style="width: 100px; height:100px;" src="{{ i.profile.url }}" alt="img"> </td>
+        {# <td> <img style="width: 100px; height:100px;" src="{{ i.profile.url }}" alt="img"> </td>#}
         <td>{{ i.full_name}}</td>
         <td>{{ i.email }}</td>
         <td>{{ i.user_name }}</td>

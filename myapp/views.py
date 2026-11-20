@@ -77,9 +77,27 @@ def login(request):
     if request.method=='POST':
         uname=request.POST.get("username")
         pswd=request.POST.get("password")
-        data=Registration(user_name=uname,password=pswd)
-        if data:
-            return redirect("dashboard")
+
+        data=Registration.objects.filter(user_name=uname).first()
+        if data and data.password ==pswd:
+            request.session["username"] = data.user_name
+            request.session["fullname"] = data.full_name
+            request.session["email"] = data.email
+            request.session["user_id"]= data.id
+            print(request.session.items())
+            # return redirect("dashboard")
+            # setting cookies
+
+            response =redirect("dashboard")
+            response.set_cookie("username",
+                                data.user_name,
+                                max_age=60,
+                                expires=True)
+            response.set_cookie("fullname",
+                                data.full_name,
+                                max_age=3600,
+                                expires=True)
+            return response
 
     return render(request,"login.html")
 
@@ -130,3 +148,16 @@ def update_list(request,pk):
         form=updatelist_validform(instance=user)
 
     return render(request,"update_list.html",{"data":form})
+
+
+def profile(request):
+    if not request.session.get("user_id"):
+        return redirect("login")
+    user=Registration.objects.get(id=request.session["user_id"])
+    return render(request,"profile.html",{"user":user})
+
+def logout(request):
+    response =redirect("login")
+    response.delete_cookie("username")
+    response.delete_cookie("fullname")
+    return response
