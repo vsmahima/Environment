@@ -7,6 +7,16 @@ from django.conf import settings
 from django.contrib import messages
 
 
+#Api header section
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from . serializers import StudentSerialzer
+from . models import Student
+from rest_framework import status
+
+
+
 # Create your views here.
 def home(request):
     return render(request,"home.html")
@@ -161,3 +171,18 @@ def logout(request):
     response.delete_cookie("username")
     response.delete_cookie("fullname")
     return response
+
+
+# API handling functions
+
+class StudentList(APIView):
+    def post(self,request):
+        serializer = StudentSerialzer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,
+                        status=status.HTTP_200_OK)
+
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)

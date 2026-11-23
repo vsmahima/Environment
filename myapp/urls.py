@@ -15,4 +15,5 @@ urlpatterns = [
     path("update_list/<int:pk>/",views.update_list,name="update_list"), 
     path("profile",views.profile,name="profile"),
     path("logout/",views.login,name="logout"),
+    path("student/",views.StudentList.as_view(),name="student")
 ]

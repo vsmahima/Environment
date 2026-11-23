@@ -31,3 +31,10 @@ class Validation(models.Model):
     username=models.CharField(max_length=20)
     email=models.EmailField()
     password=models.CharField(max_length=20)
+
+
+class Student(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    age = models.IntegerField()
+    department = models.CharField(max_length=50)
