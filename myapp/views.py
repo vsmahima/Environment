@@ -211,4 +211,19 @@ class StudentDetails(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
+    def patch(self,request,id):
+            student = self.get_object(id)
+            serializer = StudentSerialzer(student, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    #delete a record
+    def delete(self,request,id):
+        student=Student.objects.get(id=id)
+        student.delete()
+        return Response({"message":"Student record deleted"},
+                        status=status.HTTP_200_OK)
