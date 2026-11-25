@@ -186,3 +186,29 @@ class StudentList(APIView):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self,requst):
+        student = Student.objects.all()
+        serializer = StudentSerialzer(student,many=True)
+        return Response(serializer.data)
+
+# class to fetch single entity details uisng id
+
+class StudentDetails(APIView):
+    #function to get id
+    def get_object(self,id):
+        return get_object_or_404(Student,id=id)
+
+    def get(self,request,id):
+        student = self.get_object(id)
+        serializer = StudentSerialzer(student)
+        return Response(serializer.data)
+
+    def put(self,request,id):
+        student = self.get_object(id)
+        serializer = StudentSerialzer(student, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
