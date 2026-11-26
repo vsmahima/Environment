@@ -1,5 +1,4 @@
-installed apps
-
 django
 mysqlclient
 pillow
+djangorestframework
